@@ -1,5 +1,17 @@
 import express from "express";
-const app = express();
+import http from "http";
+import socket from "socket.io";
+import cors from "cors";
+import Game from "./Model/Game";
 
-app.listen(8000);
+const app = express();
+const server = http.createServer(app);
+const io = socket(server);
+app.use(cors());
+
+const games: Game[] = [];
+
+io.on("connection", socket => {});
+
+server.listen(8000);
 module.exports = app;
