@@ -1,14 +1,20 @@
-import Card from "../interface/Player.interface";
+import Player from "../interface/Player.interface";
 import { UserStatus } from "../enums/gamestatus.enum";
 
 export default class User {
-    private cards: Card[] = [];
-    public gameStatus: UserStatus;
-    private _name: string;
+    private _cards: Player[] = [];
 
-    constructor(private id: string) {
-        this.gameStatus = UserStatus.WAITING;
-        this._name = "";
+    constructor(
+        private _id: string,
+        private _name: string,
+        public gameStatus = UserStatus.WAITING
+    ) {}
+
+    get id(): string {
+        return this._id;
+    }
+    set id(value: string) {
+        this._id = value;
     }
 
     get name(): string {
@@ -18,7 +24,15 @@ export default class User {
         this._name = value;
     }
 
-    addCards(cards: Card[]) {
+    get cards(): Player[] {
+        return this._cards;
+    }
+
+    set cards(cards: Player[]) {
+        this._cards = cards;
+    }
+
+    addCards(cards: Player[]) {
         this.cards = cards;
     }
 

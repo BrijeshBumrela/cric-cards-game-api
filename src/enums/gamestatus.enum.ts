@@ -5,6 +5,7 @@ export enum GameStatus {
 }
 
 export enum UserStatus {
+    PLAYING = "PLAYING",
     WAITING = "WAITING",
     LOST = "LOST",
     WON = "WON",

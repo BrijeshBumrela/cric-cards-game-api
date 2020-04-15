@@ -1,5 +1,5 @@
 export default interface Player {
-    pid: string;
+    id: string;
     country: string;
     imageURL: string;
     name: string;

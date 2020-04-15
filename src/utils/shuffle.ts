@@ -14,6 +14,5 @@ export default <T>(arr: T[]): T[] => {
         arr[currentIndex] = arr[randomIndex];
         arr[randomIndex] = temporaryValue;
     }
-
     return arr;
 };

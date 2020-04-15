@@ -47,7 +47,6 @@ const myPlayer = {
         best: playerData.data.bowling.ODIs["BBM"]
     }
 }
-console.log(myPlayer);
 // const results = await Promise.all(cricRequests);
 // results.map(result => {
 //     const { data } = result;
