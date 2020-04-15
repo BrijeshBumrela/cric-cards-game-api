@@ -23,6 +23,7 @@ const cricRequests = cricPlayersIds.map(id => new Promise(async (res, rej) => {
 const jsonFile = fs.readFileSync(path.resolve(__dirname, 'data.json'))
 const parsedData = JSON.parse(jsonFile);
 const playerData = parsedData["players"][0]
+
 const myPlayer = {
     id: playerData.pid,
     name: playerData.name,

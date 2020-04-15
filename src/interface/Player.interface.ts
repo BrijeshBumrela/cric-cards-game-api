@@ -1,4 +1,4 @@
-export default interface Card {
+export default interface Player {
     pid: string;
     country: string;
     imageURL: string;
