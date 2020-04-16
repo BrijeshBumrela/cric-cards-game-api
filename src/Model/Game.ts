@@ -7,6 +7,7 @@ import shuffle from "../utils/shuffle";
 export default class Game {
     private _users: User[] = [];
     private readonly MAX_USER_LIMIT = 4;
+    private _turn: number = 0;
 
     constructor(
         public room: string,
@@ -48,6 +49,19 @@ export default class Game {
     private startTheGame() {
         const players: Player[] = fetchData();
         this.distributeCards(players);
+
+        // Set who is going to play first
+        this.turn = Math.floor(Math.random() * 3);
+    }
+
+    public getUserWithTheTurn(): User {
+        return (
+            this.users.find((_, index) => index === this.turn) || this.users[0]
+        );
+    }
+
+    public getUserIndex(findUser: User): number {
+        return this.users.findIndex(user => user === findUser);
     }
 
     get status(): GameStatus {
@@ -56,6 +70,14 @@ export default class Game {
 
     set status(value: GameStatus) {
         this._status = value;
+    }
+
+    get turn(): number {
+        return this._turn;
+    }
+
+    set turn(value: number) {
+        this._turn = value;
     }
 
     get users(): User[] {

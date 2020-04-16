@@ -26,12 +26,21 @@ io.on("connection", socket => {
     socket.join(game.room);
 
     if (game.isRoomFilled()) {
-        for (let user of game.users) {
-            io.to(user.id).emit("startgame", {
-                turn: false,
-                card: user.cards[0]
-            });
-        }
+        game.users.forEach((user, index) => {
+            if (game instanceof Game) {
+                io.to(user.id).emit("startgame", {
+                    myInfo: {
+                        card: user.cards[0],
+                        position: game.getUserIndex(user)
+                    },
+                    turnInfo: {
+                        card: game.getUserWithTheTurn().cards[0],
+                        position: game.getUserIndex(game.getUserWithTheTurn())
+                    }
+                });
+            }
+        });
+        console.log(user);
     }
 });
 
