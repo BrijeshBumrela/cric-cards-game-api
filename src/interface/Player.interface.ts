@@ -5,29 +5,21 @@ export default interface Player {
     name: string;
     playingRole: string;
     matches: number;
-    bowling: Bowling;
-    batting: Batting;
-}
-
-interface Bowling {
     wickets: number;
     economy: number;
-    average: number;
+    bowlAverage: number;
     best: Best;
+    notOuts: number;
+    runs: number;
+    highScore: number;
+    catches: number;
+    batAverage: number;
+    hundreds: number;
+    fifties: number;
 }
 
 // Best Bowling Performance
 interface Best {
     wickets: number;
     runs: number;
-}
-
-interface Batting {
-    notOuts: number;
-    runs: number;
-    highScore: number;
-    catches: number;
-    average: number;
-    hundreds: number;
-    fifties: number;
 }

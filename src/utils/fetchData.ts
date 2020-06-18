@@ -15,21 +15,17 @@ export const fetchData = (): Player[] => {
             imageURL: player.imageURL,
             playingRole: player.playingRole,
             match: player.data.bowling.ODIs.Mat,
-            batting: {
-                notOuts: player.data.batting.ODIs["NO"],
-                runs: player.data.batting.ODIs["Runs"],
-                highScore: player.data.batting.ODIs["HS"],
-                catches: player.data.batting.ODIs["Ct"],
-                average: player.data.batting.ODIs["Ave"],
-                hundreds: player.data.batting.ODIs["100"],
-                fifties: player.data.batting.ODIs["50"]
-            },
-            bowling: {
-                wickets: player.data.bowling.ODIs["Wkts"],
-                economy: player.data.bowling.ODIs["Econ"],
-                average: player.data.bowling.ODIs["Ave"],
-                best: player.data.bowling.ODIs["BBM"]
-            }
+            notOuts: player.data.batting.ODIs["NO"],
+            runs: player.data.batting.ODIs["Runs"],
+            highScore: player.data.batting.ODIs["HS"],
+            catches: player.data.batting.ODIs["Ct"],
+            batAverage: player.data.batting.ODIs["Ave"],
+            hundreds: player.data.batting.ODIs["100"],
+            fifties: player.data.batting.ODIs["50"],
+            wickets: player.data.bowling.ODIs["Wkts"],
+            economy: player.data.bowling.ODIs["Econ"],
+            bowlAverage: player.data.bowling.ODIs["Ave"],
+            best: player.data.bowling.ODIs["BBM"]
         };
     });
 
