@@ -7,6 +7,7 @@ import User from "./Model/User";
 import { getAvailableRoom } from "./utils/getAvailableRoom";
 import { v4 as uuidv4 } from "uuid";
 import PlayService from "./services/playService";
+import { getUserGame } from "./utils/getValues";
 
 const app = express();
 const server = http.createServer(app);
@@ -24,7 +25,6 @@ io.on("connection", socket => {
     }
     // Starting the game when the user limit is reached is in this function
     game.addUser(user);
-    console.log(game.room);
     socket.join(game.room);
 
     if (game.isRoomFilled()) {
@@ -45,16 +45,34 @@ io.on("connection", socket => {
         });
     }
 
+    socket.on("playedTurn", ({ key }) => {
+        const game = getUserGame(socket.id, games);
+        if (!game) throw new Error("No game found for this user");
+        if (game.validateTurnUser(user)) {
+            const data = game.playedTheTurn(key);
+            game.users.forEach(user => {
+                if (game instanceof Game) {
+                    io.to(user.id).emit("turnResponse", data);
+                }
+            });
+        }
+    });
+
     socket.on("disconnect", () => {
         findUserAndRemoveFromGame(socket.id, games);
     });
 });
 
 const findUserAndRemoveFromGame = (id: string, games: Game[]) => {
-    games.forEach(game => {
+    games.forEach((game, index) => {
         game.users.forEach((user, index) => {
             if (user.id === id) game.users.splice(index, 1);
         });
+
+        // Destory the room if no user if left
+        if (game.users.length === 0) {
+            games.splice(index, 1);
+        }
     });
 };
 

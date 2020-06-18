@@ -4,13 +4,13 @@ import { getKeyValueArr } from "../utils/getValues";
 export default class PlayService {
     constructor() {}
 
-    private getEqualityCondition<K extends keyof Player>(key: K) {
+    private getEqualityCondition(key: string) {
         let equality = true;
         if (key === "economy" || key === "bowlAverage") equality = false;
         return equality;
     }
 
-    public compare<K extends keyof Player>(each_user_card: Player[], key: K) {
+    public compare(each_user_card: Player[], key: string) {
         // Returns whether the winner should have max or min value
         const greater = this.getEqualityCondition(key);
 
