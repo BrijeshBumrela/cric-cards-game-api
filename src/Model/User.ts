@@ -7,7 +7,7 @@ export default class User {
     constructor(
         private _id: string,
         private _name: string,
-        public gameStatus = UserStatus.WAITING
+        private _status: UserStatus = UserStatus.WAITING
     ) {}
 
     get id(): string {
@@ -30,6 +30,14 @@ export default class User {
 
     set cards(cards: Player[]) {
         this._cards = cards;
+    }
+
+    get status(): UserStatus {
+        return this._status;
+    }
+
+    set status(status: UserStatus) {
+        this._status = status;
     }
 
     addCards(cards: Player[]) {
